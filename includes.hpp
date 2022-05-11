@@ -1,5 +1,10 @@
 #pragma once
-#include <bits/stdc++.h>
+#include <iostream>
+#include <ctime>
+#include <cstring>
+#include <fstream>
+#include <vector>
+#include <algorithm>
 
 #define MAX_LENG 255
 
