@@ -170,9 +170,7 @@ void chuanhoaIdBook(vector<Book> &books) {
 }
 
 void deleteBook(vector<Book> &books) {
-  system("cls");
-  cout << "\t\t\tXoa sach\n";
-  cout << "Nhap ten ban muon xoa";
+  cout << "Nhap ten ban muon xoa: ";
   string name;
   getline(cin, name);
   int n = books.size();
@@ -189,7 +187,6 @@ int compareBook(Book b1, Book b2) {
 }
 
 void sortBook(vector<Book> &books) {
-  system("cls");
   sort(books.begin(), books.end(), compareBook);
   chuanhoaIdBook(books);
   cout << "Da xap xep sach xong\n";
@@ -327,12 +324,14 @@ void xl() {
       showBorrowOfMenber(members, books);
       break;
     case 8:
+      system("cls");
       cout << "\t\tTIM KIEM SACH\n\n";
       seach(books);
       cout << "\n\nNhan ENTER de ve menu";
       cin.get();
       break;
     case 9:
+      system("cls");
       cout << "\t\tMUON SACH\n\n";
       borrowBook(members, books);
       break;
@@ -340,12 +339,14 @@ void xl() {
       returnBook(members, books);
       break;
     case 11:
+      system("cls");
       cout << "\t\tSAP XEP SACH THEO TEN\n\n";
       sortBook(books);
       cout << "\n\nNhan ENTER de ve menu";
       cin.get();
       break;
     case 12:
+      system("cls");
       cout << "\t\tXOA SACH\n\n";
       deleteBook(books);
       cout << "\n\nNhan ENTER de ve menu";

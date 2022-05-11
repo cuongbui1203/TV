@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1652205105 source:e:\!!!hoc_tap\lap_trinh\c++\thuvien\book.cpp
+	"Book.hpp"
+
+1652239759 e:\!!!hoc_tap\lap_trinh\c++\thuvien\book.hpp
+	"includes.hpp"
+
+1652282300 e:\!!!hoc_tap\lap_trinh\c++\thuvien\includes.hpp
+	<iostream>
+	<ctime>
+	<cstring>
+	<fstream>
+	<vector>
+	<algorithm>
+
+1652280924 source:e:\!!!hoc_tap\lap_trinh\c++\thuvien\borrowing.cpp
+	"Borrowing.hpp"
+
+1652280706 e:\!!!hoc_tap\lap_trinh\c++\thuvien\borrowing.hpp
+	"includes.hpp"
+	"Book.hpp"
+
+1652208713 source:e:\!!!hoc_tap\lap_trinh\c++\thuvien\main.cpp
+	"Process.hpp"
+
+1652238733 e:\!!!hoc_tap\lap_trinh\c++\thuvien\process.hpp
+	"includes.hpp"
+	"Borrowing.hpp"
+	"Book.hpp"
+	"Member.hpp"
+
+1652275081 e:\!!!hoc_tap\lap_trinh\c++\thuvien\member.hpp
+	"includes.hpp"
+	"Borrowing.hpp"
+
+1652281008 source:e:\!!!hoc_tap\lap_trinh\c++\thuvien\member.cpp
+	"Member.hpp"
+	"Process.hpp"
+
+1652281617 source:e:\!!!hoc_tap\lap_trinh\c++\thuvien\process.cpp
+	"Process.hpp"
+

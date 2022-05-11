@@ -32,12 +32,17 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="book.cpp" />
-		<Unit filename="book.hpp" />
+		<Unit filename="Book.cpp" />
+		<Unit filename="Book.hpp" />
+		<Unit filename="Borrowing.cpp" />
+		<Unit filename="Borrowing.hpp" />
+		<Unit filename="Member.cpp" />
+		<Unit filename="Member.hpp" />
+		<Unit filename="Process.cpp" />
+		<Unit filename="Process.hpp" />
 		<Unit filename="borrowing.hpp" />
+		<Unit filename="includes.hpp" />
 		<Unit filename="main.cpp" />
-		<Unit filename="menber.cpp" />
-		<Unit filename="menber.hpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
