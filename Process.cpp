@@ -10,10 +10,12 @@ int showMenu() {
   cout << "\n\t\t4. Them thanh vien moi.";
   cout << "\n\t\t5. Hien thi tat ca sach.";
   cout << "\n\t\t6. Hien thi tat ca thanh vien.";
-  cout << "\n\t\t7. Tim sach.";
-  cout << "\n\t\t8. Muon sach.";
-  cout << "\n\t\t9. Sap xep sach.";
-  cout << "\n\t\t10. Xoa sach.";
+  cout << "\n\t\t7. Hien thi lich su muon sach cua thanh vien.";
+  cout << "\n\t\t8. Tim sach.";
+  cout << "\n\t\t9. Muon sach.";
+  cout << "\n\t\t10. Tra sach.";
+  cout << "\n\t\t11. Sap xep sach.";
+  cout << "\n\t\t12. Xoa sach.";
   cout << "\n\t\t0. Thoat.";
   cout << "\nnhap lua chon cua bn: ";
   int i;
@@ -26,12 +28,14 @@ void borrowBook(vector<Member> &member, vector<Book> &book) {
   string n;
   cout << "Nhap ten cua thanh vien muon muon: ";
   getline(cin, n);
-  for (Member i : member) {
+  for (Member &i : member) {
     if (i.getName().find(n) != string::npos) {
       cout << i << endl;
       i.borrowBook(book);
     }
   }
+  cout << "\nNhan Enter de ve menu:";
+  cin.get();
 }
 
 void addNewBooks(vector<Book> &books) {
@@ -193,6 +197,85 @@ void sortBook(vector<Book> &books) {
   cout << "Da xap xep sach xong\n";
 }
 
+void showBorrowOfMenber(vector<Member> &member, vector<Book> &book) {
+  system("cls");
+  bool y = false, run = false;
+  string name;
+  cout << "\t\tLICH SU MUON SACH\n\n";
+  do {
+    cout << "nhap ten thanh vien muon tra lich su: ";
+    fflush(stdin);
+    getline(cin, name);
+    for (Member i : member) {
+      if (i.getName().find(name) != string::npos) {
+        if (i.getBorrows().size() == 0)
+          cout << "Thanh vien nay khong muon sach.";
+        else
+          for (Borrowing t : i.getBorrows()) {
+            t.show(book);
+            cout << "\n";
+          }
+        y = true;
+      }
+    }
+    if (!y) {
+      cout << "khong tim thay thanh vien ban muon tim.\nBan co muon nhap lai "
+              "khong (y/n)? ";
+      char c;
+      cin >> c;
+      run = c == 'y';
+    } else {
+      cout << "\nNhan Enter de ve menu";
+      cin.get();
+      run = false;
+    }
+  } while (run);
+}
+
+void returnBook(vector<Member> &member, vector<Book> &book) {
+  system("cls");
+  cout << "\t\tTRA SACH\n\n";
+  cout << "Nhap ten thanh vien: ";
+  string name;
+  getline(cin, name);
+  for (Member &i : member) {
+    if (i.getName().find(name) != string::npos) {
+      cout << "Cac sach chua tra:\n";
+      for (Borrowing &t : i.getBorrows()) {
+        if (!t.isReturned()) {
+          t.show(book);
+        }
+      }
+      cout << "Ban muon tra het sach k (y/n)? ";
+      char c;
+      cin >> c;
+      if (c == 'y') {
+        i.returnedBook(book);
+        cout << "Da tra tat ca sach thanh cong";
+      } else {
+        string bookname;
+        bool tra = false;
+        do {
+          fflush(stdin);
+          cout << "nhap ten sach ban muon tra: ";
+          getline(cin, bookname);
+          i.returnedBook(book, bookname);
+          cout << "\nDa tra sach thanh cong";
+          tra = true;
+          if (tra) {
+            cout << "\n\nBan co muon tra sach tiep khong (y/n)?";
+            cin >> c;
+            if (c == 'n')
+              break;
+          }
+        } while (true);
+        cout << "\nNhan Enter de ve menu:";
+        cin.get();
+      }
+    }
+  }
+}
+
 void xl() {
   vector<Book> books;
   vector<Member> members;
@@ -231,28 +314,35 @@ void xl() {
       cin.get();
       break;
     case 6:
+      system("cls");
       cout << "\t\tTOAN BO THANH VIEN\n\n";
       showAllMenbers(members);
       cout << "\n\nNhan ENTER de ve menu";
       cin.get();
       break;
     case 7:
+      showBorrowOfMenber(members, books);
+      break;
+    case 8:
       cout << "\t\tTIM KIEM SACH\n\n";
       seach(books);
       cout << "\n\nNhan ENTER de ve menu";
       cin.get();
       break;
-    case 8:
+    case 9:
       cout << "\t\tMUON SACH\n\n";
       borrowBook(members, books);
       break;
-    case 9:
+    case 10:
+      returnBook(members, books);
+      break;
+    case 11:
       cout << "\t\tSAP XEP SACH THEO TEN\n\n";
       sortBook(books);
       cout << "\n\nNhan ENTER de ve menu";
       cin.get();
       break;
-    case 10:
+    case 12:
       cout << "\t\tXOA SACH\n\n";
       deleteBook(books);
       cout << "\n\nNhan ENTER de ve menu";

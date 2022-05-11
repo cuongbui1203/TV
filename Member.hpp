@@ -23,6 +23,7 @@ public:
 
   void borrowBook(vector<Book> &);
   void returnedBook(vector<Book> &);
+  void returnedBook(vector<Book> &, string);
 
   friend istream &operator>>(istream &is, Member &menber) {
     cout << "Nhap ten nguoi dung: ";

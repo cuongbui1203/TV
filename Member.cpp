@@ -5,11 +5,25 @@ Member::Member(int id) { this->id = id; }
 Member::Member() {}
 
 void Member::doc(ifstream &in) {
-  in.read(reinterpret_cast<char *>(this), sizeof(Member));
+  in.read(reinterpret_cast<char *>(&id), sizeof(int));
+  in.read(name, sizeof(name));
+  int n;
+  in.read(reinterpret_cast<char *>(&n), sizeof(int));
+  for (int i = 0; i < n; i++) {
+    Borrowing tg;
+    tg.doc(in);
+    borrows.push_back(tg);
+  }
 }
 
 void Member::ghi(ofstream &out) {
-  out.write(reinterpret_cast<char *>(this), sizeof(Member));
+  out.write(reinterpret_cast<char *>(&id), sizeof(int));
+  out.write(name, sizeof(name));
+  int n = borrows.size();
+  out.write(reinterpret_cast<char *>(&n), sizeof(int));
+  for (Borrowing i : borrows) {
+    i.ghi(out);
+  }
 }
 
 void Member::borrowBook(vector<Book> &books) {
@@ -58,5 +72,15 @@ void Member::returnedBook(vector<Book> &books) {
   for (Borrowing &i : borrows) {
     if (!i.isReturned())
       i.returnBook(books);
+  }
+}
+
+void Member::returnedBook(vector<Book> &books, string bookName) {
+  for (Borrowing &i : borrows) {
+    if (!i.isReturned() &&
+        books.at(i.getIdBook()).getTitle().find(bookName) != string::npos) {
+      i.returnBook(books);
+      return;
+    }
   }
 }
