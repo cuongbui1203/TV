@@ -110,7 +110,6 @@ void seach(vector<Book> &books) {
 }
 
 bool outToFile(vector<Book> b, vector<Member> m) {
-  system("cls");
   ofstream fo(FILE_PATH, ios::binary | ios::out | ios::trunc);
   if (!fo)
     return false;
@@ -136,7 +135,6 @@ bool outToFile(vector<Book> b, vector<Member> m) {
 }
 
 bool getInFile(vector<Book> &b, vector<Member> &m) {
-  system("cls");
   ifstream fi(FILE_PATH, ios::binary | ios::in);
 
   if (!fi)
@@ -282,6 +280,7 @@ void xl() {
   while (true) {
     switch (showMenu()) {
     case 1:
+      system("cls");
       cout << "\t\tLAY DU LIEU TU FILE\n\n"
            << (getInFile(books, members) ? "Lay du lieu thanh cong"
                                          : "Loi khi doc file")
@@ -289,6 +288,7 @@ void xl() {
       cin.get();
       break;
     case 2:
+      system("cls");
       cout << "\t\tXUAT DU LIEU RA FILE\n\n"
            << (outToFile(books, members) ? "Xuat du lieu thanh cong"
                                          : "Loi khi ghi file")
@@ -296,18 +296,21 @@ void xl() {
       cin.get();
       break;
     case 3:
+      system("cls");
       cout << "\t\tTHEM SACH THU CONG\n\n";
       addNewBooks(books);
       cout << "\n\nNhan ENTER de ve menu";
       cin.get();
       break;
     case 4:
+      system("cls");
       cout << "\t\tTHEM THANH VIEN THU CONG\n\n";
       addNewMembers(members);
       cout << "\n\nNhan ENTER de ve menu";
       cin.get();
       break;
     case 5:
+      system("cls");
       cout << "\t\tTOAN BO SACH\n\n";
       showAllBooks(books);
       cout << "\n\nNhan ENTER de ve menu";
